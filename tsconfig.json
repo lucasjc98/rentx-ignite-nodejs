@@ -4,6 +4,7 @@
     "module": "commonjs",
     "strict": true,
     "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["modules/*"],
