@@ -31,7 +31,7 @@ describe("List Categories Controller", () => {
       password: "admin",
     });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     await request(app)
       .post("/categories")
@@ -40,16 +40,14 @@ describe("List Categories Controller", () => {
         description: "Category Supertest1",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     const response = await request(app).get("/categories");
 
-    // const categories = response.body;
-
     expect(response.status).toBe(200);
-    //expect(categories.length).toBe(1);
-    // expect(categories[0]).toHaveProperty("id");
-    // expect(categories[0].name).toEqual("Category Supertest1");
+    expect(response.body.length).toBe(1);
+    expect(response.body[0]).toHaveProperty("id");
+    expect(response.body[0].name).toEqual("Category Supertest1");
   });
 });
